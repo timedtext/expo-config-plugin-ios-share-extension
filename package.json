@@ -1,0 +1,49 @@
+{
+  "name": "expo-config-plugin-ios-share-extension",
+  "version": "0.0.1",
+  "description": "Config plugin to add an share extension to a Expo iOS app",
+  "homepage": "https://github.com/langtube/expo-config-plugin-ios-share-extension#readme",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build",
+    "src",
+    "app.plugin.js"
+  ],
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module",
+    "postinstall": "patch-package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/langtube/expo-config-plugin-ios-share-extension.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/langtube/expo-config-plugin-ios-share-extension/issues"
+  },
+  "keywords": [
+    "react-native",
+    "expo-share-extension",
+    "react-native-share-extension",
+    "expo-config-plugin"
+  ],
+  "devDependencies": {
+    "@types/react-native": "^0.69.5",
+    "expo-module-scripts": "^2.1.0",
+    "patch-package": "^6.4.7",
+    "eslint": "^7.25.0",
+    "prettier": "^2.2.1"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "@expo/config-plugins": "^5.0.1",
+    "react-native": "^0.69.4",
+    "xcode": "^3.0.1"
+  }
+}
