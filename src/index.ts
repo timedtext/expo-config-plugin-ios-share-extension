@@ -1,15 +1,19 @@
-import { ConfigPlugin, createRunOncePlugin, withPlugins } from '@expo/config-plugins';
+import {
+  ConfigPlugin,
+  createRunOncePlugin,
+  withPlugins,
+} from "@expo/config-plugins";
 
-import { withAppEntitlements } from './withAppEntitlements';
-import { withShareExtensionConfig } from './withShareExtensionConfig';
-import { withShareExtensionXcodeTarget } from './withShareExtensionXcodeTarget';
+import { withAppEntitlements } from "./withAppEntitlements";
+import { withShareExtensionConfig } from "./withShareExtensionConfig";
+import { withShareExtensionXcodeTarget } from "./withShareExtensionXcodeTarget";
 
 let pkg: { name: string; version?: string } = {
-  name: 'expo-config-plugin-ios-share-extension',
-  version: 'UNVERSIONED',
+  name: "expo-config-plugin-ios-share-extension",
+  version: "UNVERSIONED",
 };
 
-export const withShareMenu: ConfigPlugin = createRunOncePlugin(
+const withShareMenu: ConfigPlugin = createRunOncePlugin(
   (config) => {
     return withPlugins(config, [
       withAppEntitlements,
@@ -18,5 +22,7 @@ export const withShareMenu: ConfigPlugin = createRunOncePlugin(
     ]);
   },
   pkg.name,
-  pkg.version,
+  pkg.version
 );
+
+export default withShareMenu;
