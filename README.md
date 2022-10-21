@@ -1,29 +1,54 @@
-# Expo config plugin iOS share extension
+# expo-config-plugin-ios-share-extension
 
-Config plugin to add an share extension to a Expo iOS app
+An Expo config plugin to auto-configure `iOS Share Extension`
 
-# API documentation
+## Installation
 
-- [Documentation for the main branch](https://github.com/expo/expo/blob/main/docs/pages/versions/unversioned/sdk/config-plugin-ios-share-extension.md)
-- [Documentation for the latest stable release](https://docs.expo.dev/versions/latest/sdk/config-plugin-ios-share-extension/)
+Install it in your project:
 
-# Installation in managed Expo projects
-
-For [managed](https://docs.expo.dev/versions/latest/introduction/managed-vs-bare/) Expo projects, please follow the installation instructions in the [API documentation for the latest stable release](#api-documentation). If you follow the link and there is no documentation available then this library is not yet usable within managed projects &mdash; it is likely to be included in an upcoming Expo SDK release.
-
-# Installation in bare React Native projects
-
-For bare React Native projects, you must ensure that you have [installed and configured the `expo` package](https://docs.expo.dev/bare/installing-expo-modules/) before continuing.
-
-### Add the package to your npm dependencies
-
-```
-npm install expo-config-plugin-ios-share-extension
+```sh
+expo install expo-config-plugin-ios-share-extension
 ```
 
+In your app’s Expo config (app.json, or app.config.js), make sure that `expo-config-plugin-ios-share-extension` has been added to the list of plugins.
 
+```app.json
+"expo": {
+  "name": "my-app",
+  "scheme": "tt",
+  "plugins": [
+      ["expo-config-plugin-ios-share-extension"]
+  ]
+}
+```
 
+Next, rebuild your app.
 
-# Contributing
+```
+eas build --profile development --platform ios
+```
 
-Contributions are very welcome! Please refer to guidelines described in the [contributing guide]( https://github.com/expo/expo#contributing).
+## Known limitations
+
+- Currently, [only URL receiving](https://github.com/langtube/expo-config-plugin-ios-share-extension/blob/24a68b4e6efbcde4c3485bfec91dad476e0c9933/src/writeShareExtensionFiles.ts#L82) is supported
+- Only support directly redirect to [Containing app](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionOverview.html).
+  - [Here's an article](https://medium.com/kraaft-co/how-i-reached-the-limits-of-react-native-by-implementing-an-ios-share-extension-4f312b534f22) that explains why this approach was chosen.
+
+## How it works.
+
+-
+
+## TODO
+
+- [ ] Support receiving more [content types](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW10)
+- [ ] Support Android
+
+# Acknowledgements
+
+This plugin was inspired by:
+
+- [react-native-app-clip](https://github.com/bndkt/react-native-app-clip)
+- [cordova-plugin-openwith](https://github.com/j3k0/cordova-plugin-openwith)
+- [react-native-share-menu](https://github.com/meedan/react-native-share-menu)
+- [react-native-receive-sharing-intent](https://github.com/ajith-ab/react-native-receive-sharing-intent)
+- [expo/config-plugins](https://github.com/expo/config-plugins)
