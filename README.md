@@ -52,3 +52,4 @@ This plugin was inspired by:
 - [react-native-share-menu](https://github.com/meedan/react-native-share-menu)
 - [react-native-receive-sharing-intent](https://github.com/ajith-ab/react-native-receive-sharing-intent)
 - [expo/config-plugins](https://github.com/expo/config-plugins)
+- [cordova-node-xcode](https://github.com/apache/cordova-node-xcode)
