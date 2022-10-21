@@ -237,26 +237,7 @@ class ShareViewController: UIViewController {
         
         
         return result
-    }
-    
-    private func getStrUrlFromText2 ( attachment: NSItemProvider)async -> String? {
-        var result:String? = nil
-        
-        do{
-            if let data = try await attachment
-                .loadItem(forTypeIdentifier: textContentType) as? String {
-                let url =  URL(string:data)
-                if(url != nil){
-                    result = url?.absoluteString
-                }
-            }
-        }catch{
-            //  self.dismissWithError()
-        }
-        
-        return result
-    }
-    
+    }    
     
     private func dismissWithError() {
         self.dismiss(animated: true, completion: nil)
