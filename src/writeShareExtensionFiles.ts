@@ -82,6 +82,7 @@ export function getShareExtensionInfoContent() {
         NSExtensionActivationRule: {
           NSExtensionActivationSupportsWebURLWithMaxCount: 1,
           NSExtensionActivationSupportsWebPageWithMaxCount: 1,
+          NSExtensionActivationSupportsText: 1
         },
       },
       NSExtensionMainStoryboard: "MainInterface",
@@ -187,7 +188,7 @@ class ShareViewController: UIViewController {
                 self.dismissWithError()
                 return;
             }
-            self.redirectToHostApp(sharedURL: strUrl!)
+            self.redirectToHostApp(sharedData: strUrl!)
         }
     }
     
@@ -244,15 +245,17 @@ class ShareViewController: UIViewController {
         extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
     
-    private func redirectToHostApp(sharedURL: String) {
+    private func redirectToHostApp(sharedData: String) {
+        var encoded = sharedData.data(using: .utf8)?.base64EncodedString()
+    
         var urlComponents = URLComponents()
         urlComponents.scheme = hostAppURLScheme
         urlComponents.host = "share"
         urlComponents.path = "/"
         urlComponents.queryItems = [
-            URLQueryItem(name: "url", value: sharedURL),
+            URLQueryItem(name: "data", value: encoded),
         ]
-        // urlComponents.url: \(scheme)://share/?url=\(sharedURL)
+        // urlComponents.url: \(scheme)://share/?url=\(encoded)
         let url = urlComponents.url
         var responder = self as UIResponder?
         let selectorOpenURL = sel_registerName("openURL:")
