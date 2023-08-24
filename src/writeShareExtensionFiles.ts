@@ -9,15 +9,17 @@ import {
   shareExtensionInfoFileName,
   shareExtensionStoryBoardFileName,
   shareExtensionViewControllerFileName,
+  Parameters,
 } from "./constants";
 
 export async function writeShareExtensionFiles(
   platformProjectRoot: string,
   scheme: string,
-  appIdentifier: string
+  appIdentifier: string,
+  parameters: Parameters
 ) {
   const infoPlistFilePath = getShareExtensionInfoFilePath(platformProjectRoot);
-  const infoPlistContent = getShareExtensionInfoContent();
+  const infoPlistContent = getShareExtensionInfoContent(parameters.activationRules);
   await fs.promises.mkdir(path.dirname(infoPlistFilePath), { recursive: true });
   await fs.promises.writeFile(infoPlistFilePath, infoPlistContent);
 
@@ -34,7 +36,7 @@ export async function writeShareExtensionFiles(
 
   const viewControllerFilePath =
     getShareExtensionViewControllerPath(platformProjectRoot);
-  const viewControllerContent = getShareExtensionViewControllerContent(scheme);
+  const viewControllerContent = getShareExtensionViewControllerContent(scheme, appIdentifier);
   await fs.promises.writeFile(viewControllerFilePath, viewControllerContent);
 }
 
@@ -68,7 +70,7 @@ export function getShareExtensionInfoFilePath(platformProjectRoot: string) {
   );
 }
 
-export function getShareExtensionInfoContent() {
+export function getShareExtensionInfoContent(activationRules: Parameters["activationRules"]) {
   return plist.build({
     CFBundleName: "$(PRODUCT_NAME)",
     CFBundleDisplayName: "Share Extension",
@@ -79,7 +81,7 @@ export function getShareExtensionInfoContent() {
     CFBundlePackageType: "$(PRODUCT_BUNDLE_PACKAGE_TYPE)",
     NSExtension: {
       NSExtensionAttributes: {
-        NSExtensionActivationRule: {
+        NSExtensionActivationRule: activationRules || {
           NSExtensionActivationSupportsWebURLWithMaxCount: 1,
           NSExtensionActivationSupportsWebPageWithMaxCount: 1,
         },
@@ -140,8 +142,8 @@ export function getShareExtensionViewControllerPath(
   );
 }
 
-export function getShareExtensionViewControllerContent(scheme: string) {
-  console.debug("************ scheme", scheme);
+export function getShareExtensionViewControllerContent(scheme: string, appIdentifier: string) {
+  console.debug("************ scheme", scheme, "appIdentifier", appIdentifier);
 
   return `import MobileCoreServices
   import Social
