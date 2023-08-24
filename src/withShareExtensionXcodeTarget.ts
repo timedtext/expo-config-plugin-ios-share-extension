@@ -1,6 +1,6 @@
 import { ConfigPlugin, withXcodeProject } from '@expo/config-plugins';
 
-import { getShareExtensionBundledIdentifier, shareExtensionName } from './constants';
+import { Parameters, getShareExtensionBundledIdentifier, shareExtensionName } from './constants';
 import {
   getShareExtensionEntitlementsFilePath,
   getShareExtensionInfoFilePath,
@@ -9,7 +9,7 @@ import {
   writeShareExtensionFiles,
 } from './writeShareExtensionFiles';
 
-export const withShareExtensionXcodeTarget: ConfigPlugin = (config) => {
+export const withShareExtensionXcodeTarget: ConfigPlugin<Parameters> = (config, parameters) => {
   return withXcodeProject(config, async (config) => {
     const extensionName = shareExtensionName;
     const platformProjectRoot = config.modRequest.platformProjectRoot;
@@ -24,7 +24,7 @@ export const withShareExtensionXcodeTarget: ConfigPlugin = (config) => {
     const viewControllerFilePath = getShareExtensionViewControllerPath(platformProjectRoot);
     const storyboardFilePath = getShareExtensionStoryboardFilePath(platformProjectRoot);
 
-    await writeShareExtensionFiles(platformProjectRoot, scheme, appIdentifier);
+    await writeShareExtensionFiles(platformProjectRoot, scheme, appIdentifier, parameters);
 
     const pbxProject = config.modResults;
 
