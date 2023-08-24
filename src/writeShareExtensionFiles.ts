@@ -71,8 +71,8 @@ export function getShareExtensionInfoFilePath(platformProjectRoot: string) {
 export function getShareExtensionInfoContent() {
   return plist.build({
     CFBundleName: "$(PRODUCT_NAME)",
-    CFBundleDisplayName: "Share Extension",
-    CFBundleIdentifier: "$(PRODUCT_BUNDLE_IDENTIFIER)", //
+    CFBundleDisplayName: "$(PRODUCT_NAME) Share Extension",
+    CFBundleIdentifier: "$(PRODUCT_BUNDLE_IDENTIFIER)",
     CFBundleDevelopmentRegion: "$(DEVELOPMENT_LANGUAGE)",
     CFBundleExecutable: "$(EXECUTABLE_NAME)",
     CFBundleInfoDictionaryVersion: "6.0",
