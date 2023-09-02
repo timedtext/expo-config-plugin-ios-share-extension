@@ -1,8 +1,8 @@
 {
   "name": "expo-config-plugin-ios-share-extension",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Config plugin to add an share extension to a Expo iOS app",
-  "homepage": "https://github.com/langtube/expo-config-plugin-ios-share-extension#readme",
+  "homepage": "https://github.com/timedtext/expo-config-plugin-ios-share-extension#readme",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "files": [
@@ -12,7 +12,9 @@
   ],
   "scripts": {
     "build": "expo-module build",
+    "build:plugin": "expo-module build plugin",
     "clean": "expo-module clean",
+    "lint": "expo-module lint",
     "test": "expo-module test",
     "prepare": "expo-module prepare",
     "prepublishOnly": "expo-module prepublishOnly",
@@ -22,28 +24,33 @@
     "type": "git",
     "url": "git+https://github.com/langtube/expo-config-plugin-ios-share-extension.git"
   },
+  "author": "timedtext (https://github.com/timedtext)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/langtube/expo-config-plugin-ios-share-extension/issues"
   },
   "keywords": [
     "react-native",
+    "expo",
     "expo-share-extension",
     "react-native-share-extension",
     "expo-config-plugin"
   ],
   "devDependencies": {
+    "@types/react": "^18.0.25",
     "@types/react-native": "^0.69.5",
-    "expo-module-scripts": "^2.1.0",
+    "expo-module-scripts": "^3.0.11",
+    "expo-modules-core": "^1.5.7",
     "eslint": "^7.25.0",
     "prettier": "^2.2.1"
   },
-  "sideEffects": false,
   "dependencies": {
     "@expo/config-plugins": "^5.0.1",
-    "xcode": "^3.0.1"
+    "expo-linking": "^5.0.2"
   },
   "peerDependencies": {
-    "react-native": "^0.69.4"
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
   }
 }
